@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class Employee implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false, updatable = false)
+    @Column(nullable = false, updatable = false) // to put some constrains oen the columns
     private Long id;
     private String name;
     private String email;
@@ -33,11 +33,11 @@ public class Employee implements Serializable {
     }
 
     public Long getId () {
-        return id;
+      return id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+      this.id = id;
     }
 
 
@@ -92,6 +92,6 @@ public class Employee implements Serializable {
     @Override
     public String toString() {
         return "Employee{" + "id=" + id + ", name='" + name + "\'" + ", email='" + email + '\'' + ", jobTitle='" + jobTitle + '\''+ ", phone='" + phone + '\'' + ", imageUrl='" + imageUrl + '\'' + '}';
-    }
+    } // when doing sop this function is automatically called
 
 }

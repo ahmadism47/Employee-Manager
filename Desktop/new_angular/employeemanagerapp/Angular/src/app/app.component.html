@@ -13,8 +13,9 @@
         </li>
      </ul>
      <form class="form-inline my-2 my-lg-0">
-        <input type="search" 
+        <input type="search" (ngModelChange)="searchEmployees(key.value)" #key="ngModel" ngModel
          name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search employees..." required>
+             <!-- #key='ngModel' ngModel :so we have a reference to the  input -->
      </form>
   </div>
 </nav>
@@ -91,7 +92,7 @@
     </div>
 
 <!-- Edit Modal -->
-<!-- <div class="modal fade" id="updateEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="employeeEditModalLabel" aria-hidden="true">
+<div class="modal fade" id="updateEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="employeeEditModalLabel" aria-hidden="true"> 
     <div class="modal-dialog" role="document">
        <div class="modal-content">
           <div class="modal-header">
@@ -108,6 +109,7 @@
                 </div>
                 <input type="hidden" ngModel="{{editEmployee?.id}}" name="id" class="form-control" id="id" placeholder="Email">
                 <input type="hidden" ngModel="{{editEmployee?.employeeCode}}" name="userCode" class="form-control" id="userCode" placeholder="Email">
+                            <!-- the are hidden because we don't want to change them but we need them in the backend work -->
                 <div class="form-group">
                    <label for="email">Email Address</label>
                    <input type="email" ngModel="{{editEmployee?.email}}" name="email" class="form-control" id="email" placeholder="Email">
@@ -125,36 +127,37 @@
                    <input type="text" ngModel="{{editEmployee?.imageUrl}}" name="imageUrl" class="form-control" id="imageUrl" placeholder="Image URL">
                 </div>
                 <div class="modal-footer">
-                   <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                   <button type="button" id="" data-bs-dismiss="modal" class="btn btn-secondary">Close</button>
                    <button (click)="onUpdateEmloyee(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+                                            <!-- we are sending editForm.value because the value of the form represent an employee  -->
                 </div>
              </form>
           </div>
        </div>
     </div>
-  </div> -->
+  </div> 
   
   <!-- Delete Modal -->
-  <!-- <div class="modal fade" id="deleteEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+  <div class="modal fade" id="deleteEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
        <div class="modal-content">
           <div class="modal-header">
              <h5 class="modal-title" id="deleteModelLabel">Delete Employee</h5>
-             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
              <span aria-hidden="true">&times;</span>
              </button>
           </div>
           <div class="modal-body">
              <p>Are you sure you want to delete employee {{deleteEmployee?.name}}?</p>
              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                <button (click)="onDeleteEmloyee(deleteEmployee?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <button (click)="onDeleteEmloyee(deleteEmployee?.id!)" class="btn btn-danger" data-bs-dismiss="modal">Yes</button>
              </div>
           </div>
        </div>
     </div>
   </div>
-  </div> -->
+  </div>
   
 
 

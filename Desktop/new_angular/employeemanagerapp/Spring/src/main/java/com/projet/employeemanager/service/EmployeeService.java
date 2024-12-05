@@ -7,15 +7,17 @@ import java.util.List;
 import com.projet.employeemanager.exception.UserNotFoundException;
 import com.projet.employeemanager.model.Employee;
 import com.projet.employeemanager.repo.EmployeeRepo;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional //Ensures all database operations within the method happen in a single transaction, if not all changes are rolled back
 public class EmployeeService {
 
-    private final EmployeeRepo employeeRepo;
+    private final EmployeeRepo employeeRepo; // final: it is initialized once, and it cannot be reassigned later
 
-    @Autowired
+    @Autowired // to automatically wired the dependencies into this class (this case: inject the EmployeeRepo into this class), this will happen when the construcure is runnig (creating the class)
     public EmployeeService(EmployeeRepo employeeRepo) {
         this.employeeRepo = employeeRepo;
     }
@@ -38,6 +40,7 @@ public class EmployeeService {
                 .orElseThrow(() -> new UserNotFoundException("User by id" + id + " was not found"));
     }// () -> : parameter lambda: cad une fonction n'attend aucun parameter pour l'appeler
 
+  @Transactional
     public void deleteEmployee(Long id) {
         employeeRepo.deleteEmployeeById(id);
     }
